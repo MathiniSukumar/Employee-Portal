@@ -1,0 +1,34 @@
+<div class="header">
+  <h1>Employee Portal</h1>
+</div>
+<div class="content"> 
+  <div class="details" *ngIf="employee">
+    <h4>
+    <p>Name:   {{employee.name}}</p>
+      <p>Phone:  {{employee.phoneNumber}}</p> 
+    </h4>
+  </div>    
+  <mat-accordion>
+  <mat-expansion-panel hideToggle *ngFor= "let skill of employee?.skills" class="panel">    
+        <mat-expansion-panel-header class="mat-row">
+          <mat-panel-title>
+           <h3>{{skill?.name}}</h3>
+          </mat-panel-title> <br>        
+        </mat-expansion-panel-header>    
+        <mat-expansion-panel-body class="body">
+        <h3 *ngIf="skill">
+          <p>Description:</p>
+           <p>{{skill?.description}}</p>
+            <ngb-rating [max]="5" [rate]="getLevel(skill.level)" [readonly]="true" class="rating"></ngb-rating>
+        </h3>      
+      </mat-expansion-panel-body>
+  </mat-expansion-panel>
+</mat-accordion>
+  <div *ngIf="!employee">
+      <h1>Employee details not found!!!</h1>
+  </div>
+</div>
+
+    
+
+
